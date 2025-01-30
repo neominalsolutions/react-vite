@@ -8,7 +8,14 @@ function AboutMe() {
 	console.log(username);
 
 	// username nasıl alınır?
-	return <>Kullanıcı Adı: {username}</>;
+	return (
+		<>
+			<hr></hr>
+			<h1>Hakkımda</h1>
+			Kullanıcı Adı: {username}
+			<hr></hr>
+		</>
+	);
 }
 
 export default AboutMe;

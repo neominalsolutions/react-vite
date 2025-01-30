@@ -1,18 +1,30 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 
 function Profile() {
+	// useNavigate hook'u ile sayfa yönlendirme yapılabilir
+	const navigate = useNavigate();
+
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const onProfileSelect = (e: any) => {
+		// username'e göre sayfa yönlendirme
+		const username = e.target.value;
+		// js üzerinden yönlendirme varsa useNavigate hook'u kullanılmalı
+		navigate('/layout/profile/me/' + username);
+	};
+
 	return (
 		<>
-			<select>
-				<option value={'ali'}>
-					<NavLink to="/site/profile/me/ali">Ali</NavLink>
-				</option>
-				<option value={'mehmet'}>
-					<NavLink to="/site/profile/me/mehmet">Mehmet</NavLink>
-				</option>
-			</select>
-
-			<NavLink to="/site/profile/settings">Settings</NavLink>
+			<h1>Profile Page</h1>
+			<hr></hr>
+			<select onChange={onProfileSelect}>
+				<option value={'ali'}>Ali</option>
+				<option value={'mehmet'}>Mehmet</option>
+			</select>{' '}
+			<NavLink to="/layout/profile/settings">Settings</NavLink>
+			<NavLink to="/layout/profile/change-password">Change Password</NavLink>
+			<hr></hr>
+			{/* child sayfaların açılması için geçerli */}
+			<Outlet />
 		</>
 	);
 }

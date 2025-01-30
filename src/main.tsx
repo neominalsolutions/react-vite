@@ -4,6 +4,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App.tsx';
 import './index.css';
 import SiteLayout from './layouts/site.layout.tsx';
+import Profile from './pages/site/profile/index.tsx';
+import AboutMe from './pages/site/profile/pages/about-me.tsx';
 
 // root oluşturuldu
 const router = createBrowserRouter([
@@ -25,15 +27,16 @@ const router = createBrowserRouter([
 			},
 			{
 				path: 'profile', // /layout/profile
-				element: <div>Profile Page</div>,
+				Component: Profile,
 				children: [
 					{
 						path: 'me/:username', // /layout/profile/me/mert
-						element: <div>User Page</div>,
+						Component: AboutMe,
 					},
 					{
 						path: 'me/settings', // /layout/profile/me/settings
 						element: <div>User Settings</div>,
+						children: [],
 					},
 				],
 			},

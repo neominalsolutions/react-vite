@@ -6,7 +6,8 @@ function SiteLayout() {
 			<div>
 				<h1>Layout</h1>
 				<nav>
-					<Link to="dashboard">Dashboard</Link>
+					<Link to="dashboard">Dashboard</Link>{' '}
+					<Link to="profile">Profile</Link>
 				</nav>
 				<main>
 					<Outlet />
