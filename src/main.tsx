@@ -1,12 +1,15 @@
-import { StrictMode } from 'react';
+import { StrictMode, Suspense } from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App.tsx';
 import './index.css';
 import SiteLayout from './layouts/site.layout.tsx';
 import Admin from './pages/admin/index.tsx';
-import Profile from './pages/site/profile/index.tsx';
+// import Profile from './pages/site/profile/index.tsx';
 import AboutMe from './pages/site/profile/pages/about-me.tsx';
+import React from 'react';
+
+const Profile = React.lazy(() => import('./pages/site/profile/index.tsx'));
 
 // root oluşturuldu
 const router = createBrowserRouter([
@@ -66,6 +69,9 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
 	<StrictMode>
-		<RouterProvider router={router} />
+		<Suspense fallback={<div>Loading...</div>}>
+			{/* componentler route üzerinden dinamik olarak yüklendiğinden sayfa yükleme işlemlerinde bu teknik daha doğru ve performanslı bir teknik olduğundan tüm sayfa componentlerine lazy load özelliği kazandırıyoruz. */}
+			<RouterProvider router={router} />
+		</Suspense>
 	</StrictMode>
 );
